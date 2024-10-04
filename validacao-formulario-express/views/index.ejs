@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <h1>
+    <%= title %>
+  </h1>
+  <h2>Formulário de Pré-Matrícula</h2>
+  <hr>
+  <form id="formulario" action="/submit-form" method="post">
+    <fieldset>
+      <h3>Dados Pessoais:</h3>
+
+      <div id="dadosPessoais">
+        <div><label for="nomeAluno">Nome do Aluno:</label>
+          <input type="text" class="nome" name="nomeAluno" id="nomeAluno" required>
+        </div>
+
+
+        <div id="nascimento">
+          <label for="dia">Nascimento (dd/mm/aaaa):</label>
+          <input type="number" name="dia" id="dia" min="1" max="31" required>/
+          <input type="number" name="mes" id="mes" min="1" max="12" required>/
+          <input type="number" name="ano" id="ano" min="1999" max="2024" required>
+        </div>
+
+        <div>
+          <label for="nomeMae">Nome da Mãe:</label>
+          <input type="text" class="nome" name="nomeMae" id="nomeMae" required>
+        </div>
+
+        <div>
+          <label for="nomePai">Nome do Pai:</label>
+          <input type="text" class="nome" name="nomePai" id="nomePai" required>
+        </div>
+
+
+        <div id="telefone">
+          Telefone:
+          <label for="ddd">DDD</label>
+          <input type="tel" maxlength='2' name="ddd" id="ddd" min="11" max="99"
+            pattern="(1[1-9]|2[1-2]|24|2[7-8]|3[1-5]|3[7-8]|4[1-9]|51|5[3-5]|6[1-9]|7[0-1]|7[3-5]|77|79|8[1-9]|9[1-4]|96|9[8-9])"
+            title="Por favor, insira um DDD válido. Ex: 11, 21, 31, 68, etc." required>
+          <label for="tel">Tel:</label>
+          <input type="tel" maxlength="9" name="tel" id="tel" required>
+          <label for="ramal">Ramal:</label>
+          <input type="tel" name="ramal" id="ramal" required>
+        </div>
+
+        <div>
+          <label for="email">E-mail:</label>
+          <input type="email" name="email" id="email" required>
+        </div>
+      </div>
+
+
+    </fieldset>
+    <fieldset>
+      <h3>Informações de Matrícula:</h3>
+
+      <div id="informacoesMatricula">
+        <div class="opcao">
+          <label for="serie"><p>Série:</p></label>
+          <select name="serie" id="serie">
+            <option value="pré-escolar" selected>pré-escola</option>
+            <option value="fundamental1">Fundamental 1</option>
+            <option value="fundamental2">Fundamental 2</option>
+            <option value="ensinoMédio">Ensino Médio</option>
+          </select>
+        </div>
+
+
+        <div class="opcao" id="turno">
+          <p>Turno:</p>
+          <p>
+            <input type="radio" name="turno" value="Manhã" id="turnoM" required>
+            <label for="turnoM">Manhã</label>
+          </p>
+          <p>
+            <input type="radio" name="turno" value="Tarde" id="turnoT" required>
+            <label for="turnoT">Tarde</label>
+          </p>
+
+        </div>
+
+
+        <div class="opcao" id="atividadesExtracurriculares">
+          <p>Atividades Extracurriculares:</p>
+          <p>
+            <input type="checkbox" name="checkboxs[]" value="Informatica" id="informatica">
+            <label for="informatica">Informática</label>
+          </p>
+
+
+          <p>
+            <input type="checkbox" name="checkboxs[]" value="Música" id="musica">
+            <label for="musica">Música</label>
+          </p>
+
+
+          <p>
+            <input type="checkbox" name="checkboxs[]" value="Balet" id="balet">
+            <label for="balet">Balet</label>
+          </p>
+
+
+          <p>
+            <input type="checkbox" name="checkboxs[]" value="Pintura" id="pintura">
+            <label for="pintura">Pintura</label>
+
+          </p>
+
+          <p>
+            <input type="checkbox" name="checkboxs[]" value="Judô" id="judo">
+            <label for="judo">Judô</label>
+          </p>
+
+
+          <p>
+            <input type="checkbox" name="checkboxs[]" value="Futebol" id="futebol">
+            <label for="futebol">Futebol</label>
+          </p>
+
+        </div>
+
+
+      </div>
+
+
+
+    </fieldset>
+    <div id="botao">
+      <button type="submit">Enviar Formulário</button>
+      <button type="reset">Limpa Campos</button>
+    </div>
+    
+  </form>
+  <script>
+    // Validação do Formulário
+    document.getElementById('formulario').addEventListener('submit', function (event) {
+      const emailInput = document.getElementById('email');
+      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      const checkboxes = document.querySelectorAll("input[name='checkboxs[]']:checked");
+
+      console.log(checkboxes.length);
+      // Verificar se o formato do email é válido
+      if (!emailPattern.test(emailInput.value)) {
+        alert("Erro de validação! Por favor, insira um e-mail válido com um ponto (.) depois do '@'. Além de dois dígitos depois do (.).");
+        event.preventDefault();
+      }
+
+      // Verificar a seleção das atividades extracurriculares
+      if (checkboxes.length > 3) {
+        alert('Erro de validação! Você só pode selecionar no máximo 3 atividades extracurriculares.');
+        event.preventDefault();
+      }
+
+
+    });
+  </script>
+</body>
+
+</html>

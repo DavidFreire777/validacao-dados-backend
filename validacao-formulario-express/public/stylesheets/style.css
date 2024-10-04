@@ -1,0 +1,73 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  width: 50%;
+  margin: auto;
+  
+  
+}
+
+fieldset{
+  padding-bottom: 20px;
+  width: 100%;
+}
+
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+a {
+  color: #00B7FF;
+}
+
+h1,h2{
+  text-align: center;
+}
+
+
+#dadosPessoais {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#informacoesMatricula {
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+  
+  
+}
+
+.opcao {
+  display: flex;
+  flex-direction: column;
+  
+ 
+}
+
+button {
+  margin-top: 10px;
+}
+
+
+
+#ddd{
+  width: 25px;
+}
+
+#tel, #ramal{
+  width: 100px;
+}
+
+#dia, #mes {
+  width: 40px;
+}
+
+.nome, #email{
+  width: 300px;
+}
